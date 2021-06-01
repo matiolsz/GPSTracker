@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<div class="container">
+  <h3>Measurements</h3>
+  <hr>
+
+
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>Id</th>
+      <th>Latitiude</th>
+      <th>Longitiude</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="measurement : ${measurementList}">
+      <td th:text="${measurement.id}"/>
+      <td th:text="${measurement.latitiude}"/>
+      <td th:text="${measurement.longitiude}"/>
+    </tr>
+    </tbody>
+
+  </table>
+</div>
+</body>
+
+</html>
