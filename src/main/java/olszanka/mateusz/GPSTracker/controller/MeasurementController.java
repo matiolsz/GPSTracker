@@ -1,7 +1,9 @@
 package olszanka.mateusz.GPSTracker.controller;
 
 import olszanka.mateusz.GPSTracker.domain.Device;
+import olszanka.mateusz.GPSTracker.domain.Measurement;
 import olszanka.mateusz.GPSTracker.service.DeviceService;
+import olszanka.mateusz.GPSTracker.service.MeasurementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,45 +14,45 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/device")
-public class DeviceController {
-    private DeviceService deviceService;
+@RequestMapping("/measurement")
+public class MeasurementController {
+    private MeasurementService measurementService;
 
     Logger logger = LoggerFactory.getLogger(DeviceController.class);
 
     @Autowired
-    private DeviceController(DeviceService deviceService){
-        this.deviceService = deviceService;
+    private MeasurementController(MeasurementService measurementService){
+        this.measurementService = measurementService;
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public Device create(@RequestBody Device device){
-        return deviceService.create(device);
+    public Measurement create(@RequestBody Measurement measurement){
+        return measurementService.create(measurement);
     }
 
     @GetMapping
-    public List<Device> getAll(){
-        return deviceService.findAll();
+    public List<Measurement> getAll(){
+        return measurementService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Device getOne(Long id){
-        return deviceService.getOne(id);
+    public Measurement getOne(Long id){
+        return measurementService.getOne(id);
     }
 
     @DeleteMapping
     void deleteAll(){
-        deviceService.deleteAll();
+        measurementService.deleteAll();
     }
 
     @DeleteMapping("/{id}")
     public void delete(Long id){
-        deviceService.delete(id);
+        measurementService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public Device put(@RequestBody Device device){
-        return deviceService.create(device);
+    public Measurement put(@RequestBody Measurement measurement){
+        return measurementService.create(measurement);
     }
 
     @ResponseStatus(value= HttpStatus.NOT_FOUND)
