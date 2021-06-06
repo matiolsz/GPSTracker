@@ -20,11 +20,19 @@ public class Measurement {
     public Measurement(){
 
     }
+
     public Measurement(int latitiude, int longitiude){
         this.latitiude = latitiude;
         this.longitiude = longitiude;
     }
+
     public Measurement(int latitiude, int longitiude, Long deviceId){
+        this.latitiude = latitiude;
+        this.longitiude = longitiude;
+        this.deviceId = deviceId;
+    }
+    public Measurement(Long id, int latitiude, int longitiude, Long deviceId){
+        this.id = id;
         this.latitiude = latitiude;
         this.longitiude = longitiude;
         this.deviceId = deviceId;
@@ -32,6 +40,7 @@ public class Measurement {
     public Long getDeviceId(){
         return this.deviceId;
     }
+
     public Long getId(){
         return this.id;
     }

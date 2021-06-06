@@ -25,10 +25,30 @@ public class Device {
         this.measurements = new ArrayList<>();
     }
 
+    public Device(Long id, String name, List<Measurement> measurements) {
+        this.id = id;
+        this.name = name;
+        this.measurements = measurements;
+    }
+
+    public Device(String name){
+        this.name = name;
+    }
+
     public Device(List<Measurement> measurements){
         this.measurements = measurements;
     }
+
     public void addMeasurementToList(Measurement measurement){
         measurements.add(measurement);
     }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

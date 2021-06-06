@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class MeasurementService {
@@ -38,11 +39,15 @@ public class MeasurementService {
         return Lists.newArrayList(measurementRepository.findAll());
     }
 
-    public Measurement create(Measurement measurement){
-        Device device = deviceRepository.findById(measurement.getDeviceId()).get();
-        measurementRepository.save(measurement);
-        device.addMeasurementToList(measurement);
-        deviceRepository.save(device);
+    public Measurement create(Measurement measurement) {
+        if(deviceRepository.existsById(measurement.getDeviceId())) {
+            Device device = deviceRepository.findById(measurement.getDeviceId()).get();
+            measurementRepository.save(measurement);
+            device.addMeasurementToList(measurement);
+            deviceRepository.save(device);
+        }else{
+            throw new NoSuchElementException("Próbujesz przyporządkować pomiar do urządzenia którego nie ma(sprawdz idDevice)");
+        }
         return measurementRepository.save(measurement);
     }
 

@@ -19,7 +19,7 @@ public class DeviceController {
     Logger logger = LoggerFactory.getLogger(DeviceController.class);
 
     @Autowired
-    private DeviceController(DeviceService deviceService){
+    public DeviceController(DeviceService deviceService){
         this.deviceService = deviceService;
     }
 
@@ -39,7 +39,7 @@ public class DeviceController {
     }
 
     @DeleteMapping
-    void deleteAll(){
+    public void deleteAll(){
         deviceService.deleteAll();
     }
 

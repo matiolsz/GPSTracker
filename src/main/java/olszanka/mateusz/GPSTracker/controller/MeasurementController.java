@@ -12,16 +12,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/measurement")
 public class MeasurementController {
     private MeasurementService measurementService;
 
-    Logger logger = LoggerFactory.getLogger(DeviceController.class);
+    Logger logger = LoggerFactory.getLogger(MeasurementController.class);
 
     @Autowired
-    private MeasurementController(MeasurementService measurementService){
+    public MeasurementController(MeasurementService measurementService){
         this.measurementService = measurementService;
     }
 
@@ -59,6 +60,11 @@ public class MeasurementController {
     @ExceptionHandler(EntityNotFoundException.class)
     public String measurementNotFound(EntityNotFoundException ex) {
         logger.warn("Nie ma takiego rekordu");
+        return ex.getMessage();
+    }
+    @ExceptionHandler(NoSuchElementException.class)
+    public String measurementNotFound(NoSuchElementException ex) {
+        logger.warn("Nie ma urządzenia z id, które podajesz");
         return ex.getMessage();
     }
 }
