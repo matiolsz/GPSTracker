@@ -34,7 +34,7 @@ public class DeviceController {
     }
 
     @GetMapping("/{id}")
-    public Device getOne(Long id){
+    public Device getOne(@PathVariable Long id){
         return deviceService.getOne(id);
     }
 
@@ -44,7 +44,7 @@ public class DeviceController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(Long id){
+    public void delete(@PathVariable Long id){
         deviceService.delete(id);
     }
 

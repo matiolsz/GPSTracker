@@ -37,7 +37,7 @@ public class MeasurementController {
     }
 
     @GetMapping("/{id}")
-    public Measurement getOne(Long id){
+    public Measurement getOne(@PathVariable Long id){
         return measurementService.getOne(id);
     }
 
@@ -47,7 +47,7 @@ public class MeasurementController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(Long id){
+    public void delete(@PathVariable Long id){
         measurementService.delete(id);
     }
 
